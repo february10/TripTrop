@@ -1,0 +1,138 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}Log-In | TripTrop{% endblock %}
+{% block css %}
+body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .fullscreen-background {
+      background-image: url('{% static "bg4.jpeg" %}');
+      filter: blur(2px);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: fixed; /* Make it fixed to cover whole page */
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: -1; /* Push behind all content */
+    }
+
+    .booking-form {
+      max-width: 600px;
+      margin: 150px auto;
+      background: rgba(255, 255, 255, 0.85); /* semi-transparent */
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-title {
+
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+      color: dark-grey;
+
+    }
+
+    .form-control {
+      border: none;
+      border-bottom: 2px solid #ccc;
+      border-radius: 0;
+      box-shadow: none;
+      background-color: transparent;
+      padding-left: 0;
+    }
+
+
+    .form-control:focus {
+      border-color: #007bff;
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    ::placeholder {
+      color: #888;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+    }
+
+    @media (max-width: 576px) {
+      .booking-form {
+        margin: 40px 15px;
+        padding: 20px;
+      }
+    }
+
+    .btn-purple {
+      background-color: #800080;
+      color: white;
+        width: 150px;
+        border-radius: 20px;
+        height:40px;
+        font-size:20px;
+        margin-left: 50px;
+    }
+    .btn-purple:hover {
+      background-color: #660066;
+    }
+
+
+{% endblock %}
+
+{% block body %}
+<div class="fullscreen-background"></div>
+
+  <div class="container">
+    <div class="booking-form">
+      <div class="form-title" ><h1><b>Log In</b></h1><hr><h6>Welcome Back User! Planning another trip as we know your soul needed it.</h6></div>
+      <form id="Log_In" action="" method="post">{% csrf_token %}
+                  <div class="form-group">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username" required />
+        </div>
+          <div class="form-group">
+          <input type="password" class="form-control" id="Password" name="password" placeholder="Password"required />
+        </div>
+          <div style="display:flex;">
+            <p>Don't have an account? No worries, Let's create one for you. <a href="/signin" style="color:#800080;">Sign Up</a></p>
+        <button type="submit" class="btn btn-purple btn-submit">Log In</button>
+            </div>
+      </form>
+    </div>
+  </div>
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

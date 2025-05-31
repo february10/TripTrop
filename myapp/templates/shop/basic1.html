@@ -1,0 +1,79 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}yu hi{% endblock %}
+{% block css %}
+.about-section {
+    background-color: #ffffff;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+  }
+
+  .about-title {
+    color: #343a40;
+  }
+
+  .about-text {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .about-img {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .about-section {
+      padding: 40px 15px;
+    }
+  }
+
+{% endblock %}
+
+
+
+{% block body %}
+<div style="margin-top:120px; margin-bottom:150px;">
+    <div>
+        <section class="about-section container">
+                <section class="about-section container" style="margin-bottom:30px; margin-top:0px; background-color:#e8daef; height:200px;">
+
+                    <div class="row align-items-center" >
+
+
+                    </div>
+
+                </section>
+
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6 mb-md-0">
+                    <div style="display:flex; ">
+                    <h4 class="about-title" >About Us</h4>
+                    <h4 class="about-title" >About Us</h4>
+                    </div>
+
+                </div>
+  <div> <hr style="margin: 20px 0px 20px 20px;"></div>
+
+
+                <!-- Text Content -->
+                    <h2 class="about-title mb-4" >About Us</h2>
+                    <p class="about-text">
+                    <strong>TripTrop</strong> is a visionary travel platform built on the belief that every journey holds the potential for transformation. With a deep appreciation for culture, connection, and discovery, TripTrop aims to redefine the way people experience the world. From iconic landmarks to hidden getaways, we bring together curated travel experiences, personalized recommendations, and insightful guidance to empower modern explorers.
+
+                    <br>Driven by passion and guided by precision, TripTrop blends technology with a human touch to simplify travel planning while amplifying the joy of exploration. What sets TripTrop apart is its commitment to authenticity and trust. Every destination we feature, every itinerary we craft, is backed by research, traveler insights, and a desire to help people create meaningful memories. </p>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+{% block js %}{% endblock %}

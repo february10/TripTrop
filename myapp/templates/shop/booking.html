@@ -1,0 +1,272 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block css %}
+
+.booking-form {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-title {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+      text-align: left;
+      color: dark-grey;
+
+    }
+
+    .form-control {
+      border: none;
+      border-bottom: 2px solid #ccc;
+      border-radius: 0;
+      box-shadow: none;
+      background-color: transparent;
+      padding-left: 0;
+    }
+
+
+    .form-control:focus {
+      border-color: #007bff;
+      background-color: transparent;
+      box-shadow: none;
+    }
+
+    ::placeholder {
+      color: #888;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+    }
+
+    @media (max-width: 576px) {
+      .booking-form {
+        margin: 40px 15px;
+        padding: 20px;
+      }
+    }
+
+    .btn-purple {
+      background-color: #800080;
+      color: white;
+        width: 150px;
+        border-radius: 20px;
+        height:40px;
+        font-size:20px;
+
+        margin-top: 50px;
+    }
+    .btn-purple:hover {
+      background-color: #660066;
+    }
+
+
+.card .object-fit-cover {
+  object-fit: cover;
+  height: 100%;
+}
+
+.card h4 {
+  color: #000;
+}
+
+.card a:hover {
+  color: #800080;
+}
+
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  z-index:1;
+}
+
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-box {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 80%;
+  margin: 30px 150px 10px 5px;
+  margin-left:150px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.blur-background {
+  background-image: url('{% static "luxury.jpeg" %}');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 100%;
+  z-index: 0;
+}
+
+
+{% endblock %}
+
+
+
+{% block body %}
+
+
+
+  <div class="hero-container">
+  <div class="overlay-content">
+
+    <!-- Left: Text Section -->
+    <div class="text-box">
+      <h2><b>Booking Details:</b></h2>
+      <h1 style="text-align:center;"><b> Destination You Selected: </b></h1>
+      <!--places-->
+
+<!-- Loop through all destinations -->
+{% for dest in destinations %}
+<div class="container my-4">
+  <div class="card shadow rounded-4 overflow-hidden border-0">
+    <div class="row g-0">
+
+      <!-- Left Image Column -->
+      <div class="col-md-5 d-flex align-items-center">
+        {% if dest.image %}
+  <img src="{{ dest.image.url }}" class="img-fluid rounded-4 p-3" alt="Hotel Image" style="object-fit: cover; width: 100%; height: 300px;">
+{% else %}
+  <img src="{% static 'default.jpg' %}" class="img-fluid rounded-4 p-3" alt="Default Image" style="object-fit: cover; width: 100%; height: 300px;">
+{% endif %}
+      </div>
+
+      <!-- Right Content Column -->
+      <div class="col-md-7 p-4 d-flex flex-column justify-content-between">
+
+        <!-- Top Section -->
+        <div>
+          <h4 class="fw-bold">{{ dest.place }}</h4>
+          <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill"></i> {{ dest.location }}</p>
+          <div class="mb-2">
+            <span class="badge" style="background-color: #8e44ad;">{{ dest.rating }} ★</span>
+            <span class="ms-2 text-muted">({{ dest.reviews }} reviews)</span>
+          </div>
+          <p class="small text-secondary">{{ dest.description }}</p>
+          <div style="display:flex; gap: 120px;">
+          <p class="small text-secondary">* 5 Star Hotels<br>* Free Wi-Fi at Hotel<br>* Spa & Wellness Packages</p>
+          <p class="small text-secondary">* Include Breakfast and Lunch<br>* Free Cab Bookings for Whole Tour<br>* VIP Access to Attractions & Events</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+      <div style="display:flex; margin-left:120px;">
+       <h3>Tour Price:</h3><p class="mx-5"><h4 id="price">{{ dest.price }}</h4><p class="small my-2 text-secondary">/per person</p></p>
+        </div>
+        <p class="small text-secondary " style="margin-left:120px;">Flight Tickets are not included in the package.</p>
+
+{% empty %}
+  <p class="text-center text-muted">No destinations selected at the moment.</p>
+{% endfor %}
+      <div class="booking-form">
+      <div class="form-title"><h1><b>Details:</b></h1></div>
+      <form id="Sign_Up" action="" method="post">{% csrf_token %}
+        <div class="form-group">
+          <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" required />
+        </div>
+
+        <div class="form-group">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required />
+        </div>
+
+        <div class="form-group">
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" required />
+        </div>
+
+
+        <div class="form-group">
+          <input type="number" class="form-control" id="people" name="person" min="1" max="10" placeholder="No. of Person..." required />
+        </div>
+
+
+        <div class="form-group">
+  <label class="heading-1"><h5>Tour Start Date: </h5></label>
+
+          <input type="date" class="form-control" id="check_in" name="check_in" required />
+        </div>
+
+<div class="form-group">
+  <label class="heading-1"><h5>Tour End Date: </h5></label>
+
+          <input type="date" class="form-control" id="check_out" name="check_out" required />
+        </div>
+
+        <div class="form-group">
+          <label class="heading-1"><h5>Card Number: </h5></label>
+          <input type="text" class="form-control" id="card" name="card-number"required />
+        </div>
+        <div>
+          <label class="heading-1"><h5>Expiry Date:</h5> </label>
+          <input type="text" class="form-control" id="card-expiry" name="expiry"required />
+        </div>
+        <div>
+          <label class="heading-1"><h5>cvv: </h5></label>
+          <input type="text" class="form-control" id="cvv" name="cvv"required />
+        </div>
+        <div style="display:flex;">
+        <button type="submit" class="btn btn-purple btn-submit">Pay Now</button>
+            </div>
+      </form>
+    </div>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}
+{% block js %}
+
+ <script>
+        const priceInput = document.getElementById('price');
+        const numPersonsInput = document.getElementById('people');
+        const totalAmountInput = document.getElementById('total_amount');
+
+        function updateTotal() {
+            const price = parseFloat(priceInput.value) || 0;
+            const count = parseInt(numPersonsInput.value) || 1;
+            totalAmountInput.value = (price * count).toFixed(2);
+        }
+
+        // Initial calculation
+        updateTotal();
+
+        // Update total when number of persons changes
+        numPersonsInput.addEventListener('input', updateTotal);
+    </script>
+{% endblock %}

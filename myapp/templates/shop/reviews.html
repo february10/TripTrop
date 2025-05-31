@@ -1,0 +1,180 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block css %}
+review-card {
+      min-height: 300px;
+    }
+    .reviewer-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+.hotel-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hotel-card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .hotel-card:hover {
+      transform: translateY(-5px);
+    }
+    .hotel-image {
+      height: 200px;
+      object-fit: cover;
+    }
+    .hotel-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 1.1rem;
+      color: #28a745;
+    }
+.heading{
+
+}
+    .btn-purple {
+      background-color: #800080;
+      color: white;
+        width: 150px;
+        border-radius: 20px;
+        height:40px;
+        font-size:20px;
+        margin-top:10px;
+        margin-left: 450px;
+    }
+    .btn-purple:hover {
+      background-color: #660066;
+    }
+
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  z-index:1;
+}
+
+.selects{
+height:40px;
+background-color: #e8daef;
+border-radius:10px;
+border-boundary: none;
+
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-box {
+  align-items: center;
+  font-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 80%;
+  margin: 50px 150px 10px 5px;
+  margin-left:150px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.blur-background {
+    background-image: url('{% static "f11.jpg" %}');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 100%;
+  z-index: 0;
+}
+
+
+
+{% endblock %}
+{% block body %}
+
+<div class="hero-container">
+
+
+<div>
+    <hr style="margin: 50px 20px 20px 20px;"></div>
+<div class="container py-5">
+    <h1 class="text-center mb-5">What Our Travelers Say</h1>
+
+    <div class="row justify-content-center g-4">
+      {% for review in reviews %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 rounded-4 h-100 review-card p-3">
+          <div class="d-flex align-items-center mb-3">
+            <img src="{% static 'default_profile.jpeg' %}" class="reviewer-img me-3" alt="{{ review.name }}">
+            <div>
+              <h6 class="mb-0">{{ review.name }}</h6>
+              <small class="text-muted">{{ review.location }}</small>
+            </div>
+          </div>
+          <p class="text-muted">"{{ review.comment }}"</p>
+          <div>
+            {% for i in "12345"|slice:":review.rating"|make_list %}
+              <span class="text-warning">&#9733;</span>
+            {% endfor %}
+            {% for i in "12345"|slice:"review.rating:"|make_list %}
+              <span class="text-secondary">&#9733;</span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block js %}{% endblock %}
+
+
+

@@ -1,0 +1,215 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block css %}
+.restaurant-card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    .restaurant-card:hover {
+        transform: translateY(-5px);
+    }
+    .restaurant-image {
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .restaurant-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    .rating {
+        color: #f39c12;
+        font-weight: 500;
+    }
+    .price {
+        font-size: 1rem;
+        color: #28a745;
+        font-weight: 500;
+    }
+.hotel-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hotel-card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .hotel-card:hover {
+      transform: translateY(-5px);
+    }
+    .hotel-image {
+      height: 200px;
+      object-fit: cover;
+    }
+    .hotel-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .price {
+      font-size: 1.1rem;
+      color: #28a745;
+    }
+.heading{
+
+}
+    .btn-purple {
+      background-color: #800080;
+      color: white;
+        width: 150px;
+        border-radius: 20px;
+        height:40px;
+        font-size:20px;
+        margin-left:10px;
+    }
+    .btn-purple:hover {
+      background-color: #660066;
+    }
+
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  z-index:1;
+}
+
+.selects{
+height:40px;
+background-color: #e8daef;
+border-radius:10px;
+border-boundary: none;
+
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-box {
+  align-items: center;
+  font-color: white;
+    height:140px;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 80%;
+  margin: 10px 150px 10px 10px;
+  margin-left:150px;
+  padding: 30px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.blur-background {
+    background-color: #e8daef;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 100%;
+  z-index: 0;
+}
+
+
+
+{% endblock %}
+{% block body %}
+
+<div class="hero-container">
+  <div class="blur-background"></div>
+  <div class="overlay-content">
+
+    <!-- Left: Text Section -->
+    <div class="text-box mb-6">
+      <h2 style="margin-bottom:10px; "><b>Search Restaurants</b></h2>
+
+<form method="get">
+        <div style="margin-left:30px; display: flex; gap:20px;">
+  <label class="heading"><h5>City: </h5></label>
+  <input class="selects" style="width: 400px;" type="text" name="city">
+
+    <button class="btn btn-purple" type="submit">Search</button>
+        </div>
+</form>
+
+
+    </div>
+
+  </div>
+
+<div>
+    <hr style="margin: 50px 20px 20px 20px;"></div>
+<div class="container py-5">
+    <h1 class="text-center mb-5">Top Restaurants to Try</h1>
+
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <div class="col-md-6 col-lg-4 mb-4 d-flex align-items-stretch">
+            <div class="card restaurant-card w-100">
+
+                <img src="{{ restaurant.image.url }}" class="restaurant-image w-100" alt="Restaurant Image">
+
+                <div class="card-body">
+                    <h5 class="restaurant-title text-primary">{{ restaurant.name }}</h5>
+                    <p class="card-text mb-1 text-muted">Region: {{ request.GET.city }}</p>
+                    <p class="mb-1 text-muted">Cuisine: {{ restaurant.type|default:"Not specified" }}</>
+<p class="rating">⭐ {{ restaurant.ratings|default:"N/A" }}/5</p>
+<p class="price">{{ restaurant.price|default:"--" }} / person</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if not restaurants %}
+  <p class="text-muted text-center mt-4">No restaurants found.</p>
+{% endif %}
+</div>
+  </div>
+
+{% endblock %}
+{% block js %}{% endblock %}
+
+
+

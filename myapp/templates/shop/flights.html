@@ -1,0 +1,182 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block css %}
+
+.heading{
+
+}
+    .btn-purple {
+      background-color: #800080;
+      color: white;
+        width: 150px;
+        border-radius: 20px;
+        height:40px;
+        font-size:20px;
+        margin-top:10px;
+        margin-left: 100px;
+    }
+    .btn-purple:hover {
+      background-color: #660066;
+    }
+
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  z-index:1;
+}
+
+.selects{
+height:40px;
+background-color: #e8daef;
+border-radius:10px;
+border-boundary: none;
+
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-box {
+  align-items: center;
+  font-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 80%;
+  margin: 50px 150px 10px 5px;
+  margin-left:150px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.blur-background {
+    background-image: url('{% static "f11.jpg" %}');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 400px;
+  width: 100%;
+  z-index: 0;
+}
+
+
+
+{% endblock %}
+{% block body %}
+
+<div class="hero-container">
+  <div class="blur-background"></div>
+  <div class="overlay-content">
+
+    <!-- Left: Text Section -->
+    <div class="text-box mb-6">
+      <h2 style="margin-bottom:10px; "><b>Search Flights</b></h2>
+
+<form method="get">
+    <div style="display:flex; gap:100px;">
+        <div style="margin-left:100px;">
+  <label class="heading"><h5>Departure From:</h5></label>
+
+    <select class="selects" name="from">
+    <option value="">-- Select Departure City --</option>
+    <option value="DEL">Delhi</option>
+    <option value="BOM">Mumbai</option>
+    <option value="BLR">Bangalore</option>
+    <option value="MAA">Chennai</option>
+    <option value="HYD">Hyderabad</option>
+    <option value="GOI">Goa</option>
+  </select>
+</div>
+        <div>
+  <label class="heading"><h5>Destination :</h5></label>
+    <select class="selects" name="to">
+    <option value="">-- Select Departure City --</option>
+    <option value="DEL">Delhi</option>
+    <option value="BOM">Mumbai</option>
+    <option value="BLR">Bangalore</option>
+    <option value="MAA">Chennai</option>
+    <option value="HYD">Hyderabad</option>
+    <option value="GOI">Goa</option>
+  </select>
+</div>
+        </div>
+  <!-- Travel Date -->
+  <br>
+    <div style="display:flex; gap:110px;">
+        <div style="margin-left:100px;">
+
+  <label class="heading-1"><h5>Travel Date:</h5></label>
+  <input class="selects" type="date" name="date">
+        </div>
+        <div style="margin-left:100px;">
+
+  <!-- Number of Persons -->
+    <label class="heading-1"><h5>Number of Persons:</h5></label>
+  <input class="selects" type="number" name="passengers" min="1" max="10" value="1">
+            <br></div>
+        </div>
+  <button class="btn btn-purple" type="submit">Search</button>
+</form>
+
+
+    </div>
+
+  </div>
+
+<div>
+    <hr style="margin: 50px 20px 20px 20px;"></div>
+
+<div class="container my-5">
+  <h3 class="mb-10 text-center"><b>Available Flights</b></h3>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for flight in flights %}
+    <div class="col">
+      <div class="card shadow-sm rounded border-0 h-100">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-bold">{{ flight.airline.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Flight #: {{ flight.flight.number }}</h6>
+
+          <div class="mt-3">
+            <div>
+              <strong>From:</strong> {{ flight.departure.airport }} ({{ flight.departure.iata }})<br>
+              <small class="text-muted">Depart: {{ flight.departure.scheduled|date:"M d, H:i" }}</small>
+            </div>
+            <div class="mt-2">
+              <strong>To:</strong> {{ flight.arrival.airport }} ({{ flight.arrival.iata }})<br>
+              <small class="text-muted">Arrive: {{ flight.arrival.scheduled|date:"M d, H:i" }}</small>
+            </div>
+          </div>
+
+          <div class="mt-auto pt-3">
+            <span class="badge
+              {% if flight.flight_status == 'scheduled' %} bg-primary
+              {% elif flight.flight_status == 'active' %} bg-success
+              {% elif flight.flight_status == 'cancelled' %} bg-danger
+              {% else %} bg-secondary
+              {% endif %} px-3 py-2 fs-6">
+              {{ flight.flight_status|title }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center text-muted">No flights found.</p>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+{% endblock %}
+{% block js %}{% endblock %}

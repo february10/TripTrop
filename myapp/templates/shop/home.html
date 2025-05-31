@@ -1,0 +1,534 @@
+{% extends 'shop/basic.html' %}
+{% load static %}
+{% block title %}
+Home | TripTrop
+{% endblock %}
+{% block css %}
+
+html{
+scroll-behaviour:smooth;
+}
+
+
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:1;
+}
+
+.blur-background {
+  background-image: url('{% static "back.jpeg" %}');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.overlay-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.text-box {
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 48%;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.image-box {
+  position: relative;
+  width: 48%;
+  height: 500px;
+}
+
+.img-layout {
+  position: absolute;
+  max-width: 45%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.img-1 {
+  filter: blur(0.5px);
+  top: 0;
+  left: 0;
+}
+
+.img-2 {
+  filter: blur(0.5px);
+  top: 35%;
+  right: 0;
+}
+
+.img-3 {
+  filter: blur(0.5px);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.explore-btn {
+  margin-left: 100px;
+  background-color: #800080;
+  color: white;
+  padding: 14px 28px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  border-shadow: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .overlay-content {
+    flex-direction: column;
+  }
+
+  .text-box, .image-box {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .img-layout {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .img-layout {
+    max-width: 75%;
+  }
+
+  .explore-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+.cardss{
+margin: 50px 100px 50px 100px;}
+
+.card-img-top{
+height:250px;}
+
+.about-section {
+    background-color: #ffffff;
+    padding: 60px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+  }
+
+  .about-title {
+    font-weight: 700;
+    color: #343a40;
+  }
+
+  .about-text {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .about-img {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .about-section {
+      padding: 40px 15px;
+    }
+  }
+
+
+{% endblock %}
+{% block body %}
+
+<div>
+  <div class="hero-container">
+  <div class="blur-background"></div>
+  <div class="overlay-content">
+
+    <!-- Left: Text Section -->
+    <div class="text-box">
+      <h2><b>Discover the World's Hidden Wonders With TripTrop!!!</b></h2>
+      <h5>Ready to Wander Somewhere Wonderful?</h5>
+      <p>
+        Discover breathtaking destinations, hidden gems, and unforgettable experiences, all in one place. Whether you're planning a quiet escape or an adrenaline-filled adventure, your next journey starts here.
+        <br><br></p>
+      <div style="display: flex;">
+        <p>Don’t just dream it -> <b> Click Explore and live it.</b>
+      </p>
+      <a href="#explore-section">
+        <button class="explore-btn" >Explore</button>
+      </a>
+      </div>
+    </div>
+
+    <!-- Right: Image Section -->
+    <div class="image-box">
+      <img src="{% static 'bg.jpeg' %}" alt="Scenic Top Left" class="img-layout img-1">
+      <img src="{% static 'bg4.jpeg' %}" alt="Scenic Right" class="img-layout img-2">
+      <img src="{% static 'bg2.jpeg' %}" alt="Scenic Bottom Center" class="img-layout img-3">
+
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<div class="cardss" id="explore-section">
+
+
+  <div class="row">
+    <!-- Card 1 -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static 'luxury.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><b>Luxury</b></h5>
+          <p class="card-text" style="text-align:left;">Indulge in the finest experiences and live it. </p>
+          <a href="/luxury" class="btn btn-primary" style="background-color:#800080; margin-left:150px;">Let's Go!</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static 'family.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" ><b>Family-Friendly</b></h5>
+          <p class="card-text" style="text-align:left;">Fun for every generation and family member.
+</p>
+          <a href="family/" class="btn btn-primary" style="background-color:#800080; margin-left:150px;">Let's Go!</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static 'one.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><b>Weekend Trip</b></h5>
+          <p class="card-text" style="text-align:left;">Travel that tells your story and relives you. </p>
+          <a href="weekend/" class="btn btn-primary" style="background-color:#800080; margin-left:150px;">Let's Go!</a>
+        </div>
+      </div>
+    </div>
+
+<!-- Card 4-->
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static 'all.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><b>All-Inclusive</b></h5>
+          <p class="card-text" style="text-align:left;">Everything you need, in one place effortless.</p>
+          <a href="all/" class="btn btn-primary" style="background-color:#800080; margin-left:150px;">Let's Go!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--break-->
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+
+<!--packages-->
+<div>
+  <div class="container my-5">
+  <div style="font-weight:bold; margin: 5px; margin-bottom: 5px;"><h4><b>Packages Designed For You <3</b></h4></div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="col">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static '3day.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body" style="height:px;">
+          <h5 class="card-title">Weekend Escape – 3 Days of Bliss</h5>
+          <p class="card-text">Perfect for a quick getaway! This short and sweet package includes comfortable stays, guided city tours, and curated dining experiences. Refresh your soul in just 72 hours.</p>
+        </div>
+        <div class="card-footer bg-transparent border-0">
+          <a href="day/" class="btn btn-primary" style="background-color:#800080; margin-left:200px;">Let's Go!</a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static '7day.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body" style="height:150px;">
+          <h5 class="card-title">Explore More – 7-Day Adventure</h5>
+          <p class="card-text">Dive into a full week of discovery! From iconic landmarks to hidden gems, this package covers accommodations, local experiences, adventure sports, and daily itineraries.</p>
+        </div>
+        <div class="card-footer bg-transparent border-0">
+          <a href="days/" class="btn btn-primary" style="background-color:#800080; margin-left:200px;">Let's Go!</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100 shadow rounded">
+        <img src="{% static 'festival.jpeg' %}" class="card-img-top" alt="...">
+        <div class="card-body" style="height:150px;">
+          <h5 class="card-title">Celebrate with Us – Festive Season Special</h5>
+          <p class="card-text">Celebrate the season in style! Our festive package blends cultural experiences, local traditions, exclusive events, festive meals and regional festivals.</p>
+        </div>
+        <div class="card-footer bg-transparent border-0">
+          <a href="festive/" class="btn btn-primary" style="background-color:#800080; margin-left:200px;">Let's Go!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+    <div>
+    <section class="about-section container">
+  <div class="row align-items-center">
+    <!-- Image Content -->
+    <div >
+      <img src="{% static 'inter.jpg' %}" style="height: 250px;" alt="About TripTrop" class="about-img">
+    </div>
+    <!-- Text Content -->
+    <div>
+      <h2 class="about-title mb-4" >International Trips</h2>
+      <p>At TripTrop, we believe that travel is more than a destination — it’s an experience that transforms you. Our international trips are crafted for wanderers who crave the thrill of new cultures, cuisines, and landscapes.<br> Whether you're dreaming of Europe’s historic charm, Asia’s vibrant energy, Africa’s raw beauty, or Oceania’s island paradise — we offer curated travel packages that blend adventure, luxury, and authenticity. From solo travelers to family explorers, each itinerary is thoughtfully designed to immerse you in unforgettable global journeys. Wherever your heart wants to go, let TripTrop take you there.
+      </p>
+      <div class="card-footer bg-transparent border-0">
+          <a href="international/" class="btn btn-primary" style="background-color:#800080; margin-left: 950px; width:150px;">Let's Go!</a>
+        </div>
+    </div>
+
+
+  </div>
+</section>
+  </div>
+
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+  <div class="container my-5">
+  <div class="row justify-content-center">
+
+    <!-- National Trip Card -->
+    <div class="col-md-5 m-3">
+      <div class="card shadow rounded">
+        <img src="{% static 'india1.jpeg' %}" class="card-img-top" alt="National Trip">
+        <div class="card-body">
+          <h5 class="card-title">Incredible India Tour</h5>
+          <p class="card-text">Explore the cultural tapestry of India — from the serene Himalayas to the vibrant deserts of Rajasthan. Perfect for family, solo, and spiritual travelers.</p>
+          <div class="card-footer bg-transparent border-0">
+          <a href="national/" class="btn btn-primary" style="background-color:#800080; margin-left: 250px; width:150px;">Explore India</a>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dream Trip Card -->
+    <div class="col-md-5 m-3">
+      <div class="card shadow rounded">
+        <img src="{% static 'dream1.jpeg' %}" class="card-img-top" alt="Dream Trip">
+        <div class="card-body">
+          <h5 class="card-title">Once in a Lifetime: Northern Lights</h5>
+          <p class="card-text">Make your dream trip a reality with a magical journey under the Northern Lights in Iceland. Glaciers, geysers, and glowing skies await you.</p>
+          <div class="card-footer bg-transparent border-0">
+          <a href="dream/" class="btn btn-primary" style="background-color:#800080; margin-left: 250px; width:150px;">Start Dreaming</a>
+        </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+  <div>
+    <div class="container my-5">
+  <div class="row g-4 justify-content-center">
+
+    <!-- Mountain Trips -->
+    <div class="col-md-3">
+      <div class="card shadow rounded">
+        <img src="{% static 'mount.jpeg' %}" class="card-img-top" alt="Mountain Trips">
+        <div class="card-body">
+          <h5 class="card-title"><b>Mountain Trips</b></h5>
+          <p class="card-text">Escape into the majestic highlands with breathtaking views and fresh mountain air. Ideal for hikers and trekkers.</p>
+          <a href="m/" class="btn btn-primary" style="background-color:#800080; margin-left: 80px; width:150px;">Hi Mountains</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beach Trips -->
+    <div class="col-md-3">
+      <div class="card shadow rounded">
+        <img src="{% static 'beach.jpeg' %}" class="card-img-top" alt="Beach Trips">
+        <div class="card-body">
+          <h5 class="card-title"><b>Beach Trips</b></h5>
+          <p class="card-text">Soak in the sea breeze with beach getaways. Perfect relaxation, surfing, sunset strolls by the shore.</p>
+          <a href="b/" class="btn btn-primary" style="background-color:#800080; margin-left: 80px; width:150px;">See Beaches</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Adventurous Trips -->
+    <div class="col-md-3">
+      <div class="card shadow rounded">
+        <img src="{% static 'ad.jpeg' %}" class="card-img-top" alt="Adventurous Trips">
+        <div class="card-body">
+          <h5 class="card-title"><b>Adventurous Trips</b></h5>
+          <p class="card-text">Fuel your thrill with white-water rafting, zip-lining, or desert safaris. Designed for the wild-hearted and thrill-seekers.</p>
+          <a href="a/" class="btn btn-primary" style="background-color:#800080; margin-left: 80px; width:150px;">Go Adventurous</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peaceful Retreats -->
+    <div class="col-md-3">
+      <div class="card shadow rounded">
+        <img src="{% static 'p.jpeg' %}" class="card-img-top" alt="Peaceful Trips">
+        <div class="card-body">
+          <h5 class="card-title"><b>Peaceful Retreats</b></h5>
+          <p class="card-text">Rejuvenate your soul with tranquil escapes. Ideal for meditation, wellness, and reconnecting with inner calm.</p>
+          <a href="p/" class="btn btn-primary" style="background-color:#800080; margin-left: 80px; width:150px;">Find Peace</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+
+
+  <div>
+    <section class="about-section container">
+  <div class="row align-items-center">
+
+    <!-- Image Content -->
+    <div class="col-md-6">
+      <img src="{% static 'hd.jpeg' %}" style="height: 500px;" alt="About TripTrop" class="about-img">
+    </div>
+
+
+    <!-- Text Content -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h2 class="about-title mb-4" >Hidden Wonders Near You??</h2>
+      <p class="about-text">
+        Tucked away from the usual tourist trails lie breathtaking hidden gems waiting to be discovered. Whether it's a quaint hillside hamlet, a pristine forest trail, a historic village echoing with forgotten tales, or a secluded waterfall that feels like your personal paradise — these wonders promise unique, authentic, and soul-stirring experiences. Perfect for weekend escapes or spontaneous adventures, explore the unexplored and reconnect with the charm that lies just around the corner. Sometimes, the most extraordinary journeys begin close to home.</p>
+    <div class="card-footer bg-transparent border-0">
+          <a href="h/" class="btn btn-primary" style="background-color:#800080; margin-top:100px; margin-left: 380px; width:150px;">Let's Find?</a>
+        </div>
+    </div>
+  </div>
+</section>
+  </div>
+
+  <div>
+    <section class="about-section container" id="about">
+  <div class="row align-items-center">
+    <!-- Text Content -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h2 class="about-title mb-4" >About Us</h2>
+      <p class="about-text">
+        <strong>TripTrop</strong> is a visionary travel platform built on the belief that every journey holds the potential for transformation. With a deep appreciation for culture, connection, and discovery, TripTrop aims to redefine the way people experience the world. From iconic landmarks to hidden getaways, we bring together curated travel experiences, personalized recommendations, and insightful guidance to empower modern explorers.
+
+<br>Driven by passion and guided by precision, TripTrop blends technology with a human touch to simplify travel planning while amplifying the joy of exploration. What sets TripTrop apart is its commitment to authenticity and trust. Every destination we feature, every itinerary we craft, is backed by research, traveler insights, and a desire to help people create meaningful memories. </p>
+    </div>
+
+    <!-- Image Content -->
+    <div class="col-md-6">
+      <img src="{% static 'about .jpeg' %}" style="height: 500px;" alt="About TripTrop" class="about-img">
+    </div>
+  </div>
+</section>
+  </div>
+
+  <div>
+    <section class="about-section container" id="contact">
+  <div class="row align-items-center">
+    <!-- Text Content -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h2 class="about-title mb-4" >Contact Us</h2>
+      <p class="about-text">
+        <strong>Get in Touch</strong><br>
+At TripTrop, we value connection as much as we value exploration. Whether you have a question, need support with your booking, or wish to share feedback or suggestions, we’re here to listen and help. Our team is dedicated to ensuring your travel experience is smooth, enjoyable, and truly memorable. Please feel free to reach out — your thoughts matter to us, and we’re committed to providing you with timely and thoughtful responses. Let’s make your next journey extraordinary, together.</p>
+    <div class="card-footer bg-transparent border-0">
+          <a href="/contact" class="btn btn-primary" style="background-color:#800080; margin-left: 400px; width:150px;">Contact Form</a>
+        </div>
+    </div>
+
+
+    <!-- Image Content -->
+    <div class="col-md-6">
+      <img src="{% static 'contact.jpeg' %}" alt="About TripTrop" class="about-img">
+    </div>
+  </div>
+</section>
+  </div>
+
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+  <div>
+    <section class="about-section container" id="feedback_form">
+  <div class="row align-items-center">
+    <!-- Text Content -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h2 class="about-title mb-4" >FeedBack Form</h2>
+      <p class="about-text">
+        <strong>Give Us Your Feedback. It Matters..</strong><br>
+We Value Your Feedback. Your thoughts help us improve! Whether it's about the design, booking process, destinations, or overall experience — we’d love to hear from you.</p>
+    <div class="card-footer bg-transparent border-0">
+          <a href="/feedback" class="btn btn-primary" style="background-color:#800080; margin-left: 400px; width:150px;">Feedback Form</a>
+        </div>
+    </div>
+
+
+    <!-- Image Content -->
+    <div class="col-md-6">
+      <img src="{% static 'feedback.jpg' %}" alt="About TripTrop" class="about-img">
+    </div>
+  </div>
+</section>
+  </div>
+
+  <div> <hr style="margin: 50px 20px 50px 0px;"></div>
+
+</div>
+
+
+
+
+{% endblock %}
+<!--"{% url 'your_explore_url_name' %}"-->
